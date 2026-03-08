@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Discover Bangladesh - A vibrant country in South Asia with rich cultural traditions, beautiful natural landscapes, and a fast-growing economy.">
+  <title>Discover Bangladesh</title>
+
+  <!-- Modern Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS -->
+  <style>:root {
+    /* Colors */
+    --primary-color: #006a4e;
+    /* Bangladesh Green */
+    --primary-light: #16936a;
+    --secondary-color: #f42a41;
+    /* Bangladesh Red */
+    --bg-dark: #0f172a;
+    /* Slate 900 for modern dark mode base */
+    --bg-dark-elem: #1e293b;
+    /* Slate 800 */
+    --text-main: #f8fafc;
+    /* Slate 50 */
+    --text-muted: #cbd5e1;
+    /* Slate 300 */
+    --glass-bg: rgba(15, 23, 42, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+
+    /* Typography */
+    --font-main: 'Outfit', 'Inter', sans-serif;
+    --font-heading: 'Outfit', 'Inter', sans-serif;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Typography styles */
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: var(--primary-light);
+    display: inline-block;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -0.5rem;
+    width: 50%;
+    height: 4px;
+    background-color: var(--secondary-color);
+    border-radius: 2px;
+}
+
+p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+ul {
+    list-style: none;
+    color: var(--text-muted);
+}
+
+/* Glassmorphism Navbar */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: all var(--transition-normal);
+}
+
+header.scrolled {
+    background: rgba(15, 23, 42, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-light);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.logo span {
+    color: var(--secondary-color);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links li a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color var(--transition-fast);
+    position: relative;
+}
+
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--secondary-color);
+    transition: width var(--transition-normal);
+}
+
+.nav-links li a:hover {
+    color: var(--primary-light);
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+/* Mobile Menu Button */
+.menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    background: linear-gradient(rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1601004812239-44d4850a11ab?q=80&w=2000&auto=format&fit=crop') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 2rem;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin-top: 5rem;
+    animation: fadeIn 1.5s ease;
+}
+
+.welcome-text {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-light);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.hero-title {
+    font-size: 5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #16936a, #4ade80);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.hero-btn {
+    background: var(--primary-light);
+    color: #fff;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid var(--primary-light);
+    box-shadow: 0 4px 15px rgba(22, 147, 106, 0.2);
+}
+
+.hero-btn:hover {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(244, 42, 65, 0.4);
+}
+
+.hero-btn.slide-btn {
+    background: transparent;
+    border-color: var(--primary-light);
+}
+
+.hero-btn.slide-btn:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-light);
+}
+
+.presentation-link {
+    color: var(--secondary-color) !important;
+    font-weight: 600;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Hidden Class for Intersection Observer */
+.hidden-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.show-element {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* General Layout sections */
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+}
+
+/* Cards System */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.glass-card {
+    background: var(--bg-dark-elem);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary-light), var(--secondary-color));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-normal);
+}
+
+.glass-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    background: #253347;
+}
+
+.glass-card:hover::before {
+    transform: scaleX(1);
+}
+
+.icon-box {
+    background: rgba(22, 147, 106, 0.1);
+    color: var(--primary-light);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Overview Section */
+.overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.overview-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.overview-images img {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+}
+
+.overview-images img:first-child {
+    height: 250px;
+    grid-column: span 2;
+}
+
+.overview-images img:nth-child(n+2) {
+    height: 180px;
+}
+
+.overview-images img:hover {
+    transform: scale(1.03);
+}
+
+.highlight-text {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+/* Lists and Items */
+.feature-list li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.feature-list li::before {
+    content: 'âœ“';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--primary-light);
+    font-weight: bold;
+}
+
+/* Image Banner */
+.image-banner {
+    width: 100%;
+    height: 400px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.image-banner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.6);
+}
+
+.banner-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+.banner-content h2 {
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 0;
+}
+
+.banner-content h2::after {
+    display: none;
+}
+
+/* Culture & History */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--primary-light);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    border-radius: 2px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: var(--secondary-color);
+    border: 4px solid var(--bg-dark);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    left: 50%;
+}
+
+.right::after {
+    left: -10px;
+}
+
+.timeline-content {
+    padding: 20px;
+    background: var(--bg-dark-elem);
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+}
+
+/* Gallery Hover Text */
+.card-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+    display: block;
+}
+
+.glass-card:hover .card-image-wrapper img {
+    transform: scale(1.1);
+}
+
+/* Footer */
+footer {
+    background: #0b1120;
+    padding: 4rem 2rem 2rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+}
+
+.footer-section h3 {
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+    color: var(--primary-light);
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+/* Responsiveness */
+@media screen and (max-width: 968px) {
+
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .overview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline::after {
+        left: 31px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    .timeline-item::after {
+        left: 21px;
+    }
+
+    .right {
+        left: 0%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background: rgba(15, 23, 42, 0.98);
+        width: 100%;
+        text-align: center;
+        padding: 2rem 0;
+        transition: left var(--transition-normal);
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+}</style>
+
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- Header & Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#home" class="logo">Bangla<span>desh</span></a>
+      <button class="menu-btn">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#geography">Geography</a></li>
+        <li><a href="#culture">Culture</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#economy">Economy</a></li>
+        <li><a href="presentation.html" class="presentation-link"><i class="fa-solid fa-person-chalkboard"></i>
+            Presentation</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero"
+    style="background-image: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.9)), url('assets/ASSETS2/bangladesh.jpg');">
+    <div class="hero-content">
+      <span class="welcome-text">Welcome to</span>
+      <h1 class="hero-title">Discover Bangladesh</h1>
+      <p class="hero-subtitle">Experience the vibrant traditions, spectacular landscapes, and the soul of South Asia.
+      </p>
+      <div class="hero-btns">
+        <a href="#overview" class="hero-btn">Explore Now</a>
+        <a href="presentation.html" class="hero-btn slide-btn">Presentation Mode</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section id="overview" class="section-container hidden-element">
+    <h2 class="hidden-element">Introduction</h2>
+    <div class="overview-grid">
+      <div class="hidden-element">
+        <p><span class="highlight-text">Bangladesh</span> is a vibrant country located in South Asia. Known for its rich
+          cultural traditions, beautiful natural landscapes, and rapidly growing economy, it emerged as an independent
+          nation in 1971 and has since become one of the fastest-growing economies in Asia.</p>
+        <p>The country is famous for its intricate network of rivers, fertile agricultural land, vivid traditional
+          festivals, and a massive, globally significant textile industry.</p>
+        <p>Bangladesh is also famously home to the <span class="highlight-text">Sundarbans</span>, the largest mangrove
+          forest in the world, which serves as the natural habitat of the endangered Royal Bengal tiger.</p>
+      </div>
+      <div class="overview-images hidden-element">
+        <img src="assets/ASSETS2/flag.jpg" alt="Flag of Bangladesh">
+        <img src="assets/ASSETS2/map.jpg" alt="Map of Bangladesh">
+        <img src="assets/ASSETS2/bangladesh.jpg" alt="Scenic Landscape">
+      </div>
+    </div>
+  </section>
+
+  <!-- Land and Geography -->
+  <section id="geography" class="section-container">
+    <h2 class="hidden-element">Land & Geography</h2>
+
+    <div class="grid-3">
+      <!-- Location -->
+      <div class="glass-card hidden-element">
+        <div class="icon-box"><i class="fa-solid fa-map-location-dot"></i></div>
+        <h3>Location</h3>
+        <p>Situated in South Asia, bordered almost entirely by India on the west, north, and east, and by Myanmar on the
+          southeast. The southern edge meets the majestic Bay of Bengal.</p>
+        <p>It forms a large part of the Ganges-Brahmaputra Delta, the largest river delta in the world.</p>
+      </div>
+
+      <!-- Climate -->
+      <div class="glass-card hidden-element">
+        <div class="icon-box"><i class="fa-solid fa-cloud-sun-rain"></i></div>
+        <h3>Climate</h3>
+        <p>A tropical monsoon climate with three main seasons:</p>
+        <div class="grid-3" style="gap: 0.5rem; margin-top: 1rem;">
+          <div class="card-image-wrapper"><img src="assets/ASSETS2/hotsummer.jpg" alt="Summer" style="height: 100px;">
+          </div>
+          <div class="card-image-wrapper"><img src="assets/ASSETS2/rainmonsoon.jpg" alt="Monsoon"
+              style="height: 100px;"></div>
+          <div class="card-image-wrapper"><img src="assets/ASSETS2/Winter-Season-in-Bangladesh.jpg" alt="Winter"
+              style="height: 100px;"></div>
+        </div>
+        <ul class="feature-list" style="margin-top: 1rem;">
+          <li>Hot summer (Marchâ€“June)</li>
+          <li>Rainy monsoon (Juneâ€“October)</li>
+          <li>Cool winter (Novâ€“Feb)</li>
+        </ul>
+      </div>
+
+      <!-- Natural Resources -->
+      <div class="glass-card hidden-element">
+        <div class="icon-box"><i class="fa-solid fa-leaf"></i></div>
+        <h3>Natural Resources</h3>
+        <div class="card-image-wrapper">
+          <img src="assets/ASSETS2/naturalresources.jpg" alt="Natural Resources">
+        </div>
+        <p>Rich resources power the nation's economy:</p>
+        <ul class="feature-list">
+          <li>Natural Gas, Fertile soil, Fisheries, Timber, and Water.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Major Cities -->
+    <div class="glass-card hidden-element" style="margin-top: 2rem;">
+      <h3>Major Cities</h3>
+      <div class="grid-3" style="margin-top: 1rem;">
+        <div>
+          <div class="card-image-wrapper"><img src="assets/ASSETS2/dhaka.jpg" alt="Dhaka"></div>
+          <h4 style="color:var(--primary-light)">Dhaka</h4>
+          <p>The capital and largest city. The political and cultural heart.</p>
+        </div>
+        <div>
+          <div class="card-image-wrapper"><img src="assets/ASSETS2/Chittagong.jpg" alt="Chittagong"></div>
+          <h4 style="color:var(--primary-light)">Chittagong</h4>
+          <p>The main seaport and center for trade.</p>
+        </div>
+        <div>
+          <div class="card-image-wrapper"><img src="assets/ASSETS2/Khulna.jpg" alt="Khulna"></div>
+          <h4 style="color:var(--primary-light)">Khulna</h4>
+          <p>Industrial city near the Sundarbans.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Break Banner -->
+  <div class="image-banner" style="background-image: url('assets/ASSETS2/Winter-Season-in-Bangladesh.jpg');">
+    <div class="banner-content hidden-element">
+      <h2>The Majestic Seasons</h2>
+      <p style="color: #fff; font-size: 1.2rem; margin-top: 1rem;">Nature's palette across the delta</p>
+    </div>
+  </div>
+
+  <!-- People & Culture -->
+  <section id="culture" class="section-container">
+    <h2 class="hidden-element">People & Culture</h2>
+
+    <div class="grid-2">
+      <div class="hidden-element">
+        <div class="glass-card" style="margin-bottom: 2rem;">
+          <div class="card-image-wrapper"><img src="assets/ASSETS2/religion.jpg" alt="Religion"></div>
+          <h3>Language & Religion</h3>
+          <p><span class="highlight-text">Bengali (Bangla)</span> is the official language. Major religions include
+            Islam, Hinduism, Buddhism, and Christianity.</p>
+        </div>
+
+        <div class="glass-card">
+          <h3>Festivals</h3>
+          <div class="grid-3" style="gap: 0.5rem;">
+            <div class="card-image-wrapper"><img src="assets/ASSETS2/Pohela.jpg" alt="Pohela Boishakh"
+                style="height:80px;"></div>
+            <div class="card-image-wrapper"><img src="assets/ASSETS2/Eid al-Fitr.jpg" alt="Eid" style="height:80px;">
+            </div>
+            <div class="card-image-wrapper"><img src="assets/ASSETS2/DurgaPuja.jpg" alt="Durga Puja"
+                style="height:80px;"></div>
+          </div>
+          <p style="margin-top:1rem;"><strong>Pohela Boishakh:</strong> New Year. <strong>Eid al-Fitr:</strong> Muslim
+            festival. <strong>Durga Puja:</strong> Hindu festival.</p>
+        </div>
+      </div>
+
+      <div class="hidden-element">
+        <div class="glass-card" style="margin-bottom: 2rem;">
+          <h3>Food & Cuisine</h3>
+          <div class="grid-3" style="gap: 0.5rem;">
+            <div class="card-image-wrapper"><img src="assets/ASSETS2/Biryani.jpg" alt="Biryani" style="height:80px;">
+            </div>
+            <div class="card-image-wrapper"><img src="assets/ASSETS2/Hilsa fish curry.jpg" alt="Hilsa"
+                style="height:80px;"></div>
+            <div class="card-image-wrapper"><img src="assets/ASSETS2/Panta Bhat.jpg" alt="Panta Bhat"
+                style="height:80px;"></div>
+          </div>
+          <p style="margin-top:1rem;">Famous for flavors like Biryani, Hilsa Curry, and Panta Bhat.</p>
+        </div>
+
+        <div class="glass-card">
+          <h3>Traditional Clothing</h3>
+          <div class="grid-2" style="gap: 0.5rem;">
+            <div class="card-image-wrapper"><img src="assets/ASSETS2/Saree.jpg" alt="Sari" style="height:120px;"></div>
+            <div class="card-image-wrapper"><img src="assets/ASSETS2/Panjabi.jpg" alt="Panjabi" style="height:120px;">
+            </div>
+          </div>
+          <p style="margin-top:1rem;"><strong>Sari:</strong> Worn by women. <strong>Panjabi:</strong> Worn by men during
+            festivals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- History & Government -->
+  <section id="history" class="section-container">
+    <h2 class="hidden-element">History & Governance</h2>
+
+    <div class="timeline hidden-element">
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <div class="card-image-wrapper"><img src="assets/ASSETS2/Partition of India.jpg" alt="Partition"></div>
+          <h3>Partition of India</h3>
+          <p>Initial formation as East Pakistan.</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <div class="card-image-wrapper"><img src="assets/ASSETS2/Bangladesh Liberation War.jpg" alt="Liberation War">
+          </div>
+          <h3>1971 Liberation War</h3>
+          <p>Triumphant independence after a nine-month war.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 4rem;">
+      <div class="glass-card hidden-element">
+        <div class="card-image-wrapper"><img src="assets/ASSETS2/politicalsystem.jpg" alt="Political System"></div>
+        <h3>Political System</h3>
+        <p>A parliamentary democratic government guaranteeing citizensâ€™ fundamental rights.</p>
+      </div>
+
+      <div class="glass-card hidden-element">
+        <h3>Key Leaders</h3>
+        <div class="grid-2" style="gap: 0.5rem;">
+          <div class="card-image-wrapper"><img src="assets/ASSETS2/Sheikh Mujibur Rahman.jpg" alt="Mujib"></div>
+          <div class="card-image-wrapper"><img src="assets/ASSETS2/Sheikh Hasina.jpg" alt="Hasina"></div>
+        </div>
+        <p style="margin-top:1rem;"><strong>Sheikh Mujibur Rahman:</strong> Founding father. <strong>Sheikh
+            Hasina:</strong> Longest-serving leader.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Economy & Tourism -->
+  <section id="economy" class="section-container">
+    <h2 class="hidden-element">Economy & Tourism</h2>
+
+    <div class="grid-3">
+      <div class="glass-card hidden-element">
+        <div class="icon-box"><i class="fa-solid fa-industry"></i></div>
+        <h3>Major Industries</h3>
+        <p>Textile & Garment, Agriculture, Shipbuilding, IT, and Fisheries.</p>
+      </div>
+
+      <div class="glass-card hidden-element">
+        <div class="icon-box"><i class="fa-solid fa-ship"></i></div>
+        <h3>Key Exports</h3>
+        <p>Ready-made garments, Jute, Seafood, and Leather goods.</p>
+      </div>
+
+      <div class="glass-card hidden-element">
+        <div class="icon-box"><i class="fa-solid fa-camera"></i></div>
+        <h3>Tourism</h3>
+        <p>Visit the world's longest beach at Cox's Bazar and the historic Lalbagh Fort.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Discover Bangladesh</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Experience the beauty, resilience, and culture of South
+          Asia's vibrant heart.</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>References</h3>
+        <ul class="footer-links">
+          <li><a href="https://www.britannica.com" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"
+                style="font-size: 0.8rem; margin-right: 0.5rem;"></i>Encyclopaedia Britannica</a></li>
+          <li><a href="https://www.nationalgeographic.com" target="_blank"><i
+                class="fa-solid fa-arrow-up-right-from-square"
+                style="font-size: 0.8rem; margin-right: 0.5rem;"></i>National Geographic Society</a></li>
+          <li><a href="https://www.cia.gov/the-world-factbook/" target="_blank"><i
+                class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8rem; margin-right: 0.5rem;"></i>CIA
+              World Factbook</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <p>
+      <h3>&copy; Pamantasan ng Cabuyao/ College of Education.</h3>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>document.addEventListener('DOMContentLoaded', () => {
+    // Navbar glass effect on scroll
+    const header = document.querySelector('header');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile Menu Toggle
+    const menuBtn = document.querySelector('.menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuBtn) {
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // Toggle icon from bars to times if using font-awesome (or unicode)
+            if (navLinks.classList.contains('active')) {
+                menuBtn.innerHTML = '&#10005;'; // X mark
+            } else {
+                menuBtn.innerHTML = '&#9776;'; // Hamburger
+            }
+        });
+    }
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links li a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            if (menuBtn) {
+                menuBtn.innerHTML = '&#9776;';
+            }
+        });
+    });
+
+    // Intersection Observer for Scroll Animations
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show-element');
+                observer.unobserve(entry.target); // Animate only once
+            }
+        });
+    }, observerOptions);
+
+    // Observe all elements with hidden-element class
+    document.querySelectorAll('.hidden-element').forEach((el) => {
+        observer.observe(el);
+    });
+});
+</script>
+</body>
+
+</html>

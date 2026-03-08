@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Bangladesh - Full Project Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #006a4e;
+            --secondary: #f42a41;
+            --text-dark: #1e293b;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background: #f1f5f9;
+        }
+
+        .report-page {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: #fff;
+            padding: 4rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Title Page */
+        .title-page {
+            height: 1000px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        .title-page img.logo {
+            width: 150px;
+            margin-bottom: 2rem;
+        }
+
+        .title-page h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .title-page p.subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .title-page .hero-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin: 3rem 0;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Typography */
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: var(--text-dark);
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        /* Grid Layouts for Content */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .img-card {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .img-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .img-card .caption {
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+            background: #fafafa;
+        }
+
+        /* Print Specifics */
+        @media print {
+            body {
+                background: none;
+            }
+
+            .report-page {
+                margin: 0;
+                padding: 2rem;
+                box-shadow: none;
+                max-width: none;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            .title-page {
+                height: 90vh;
+            }
+
+            @page {
+                margin: 1cm;
+            }
+        }
+
+        /* Specific blocks */
+        .highlight-box {
+            background: #f8fafc;
+            border-left: 5px solid var(--secondary);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-list li::before {
+            content: '•';
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-item {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-item .val {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .stat-item .lbl {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="report-page">
+        <!-- Title Page -->
+        <div class="title-page">
+            <h1 style="font-size: 5rem;">Discover <br> <span style="color: var(--secondary);">Bangladesh</span></h1>
+            <p class="subtitle">Official Project Report & Interactive Presentation Summary</p>
+            <img src="assets/ASSETS2/bangladesh.jpg" class="hero-img" alt="Hero">
+            <div style="margin-top: 2rem;">
+                <p><strong>Prepared for:</strong> College of Education / Pamantasan ng Cabuyao</p>
+                <p><strong>Subject:</strong> South Asian Geography, History, and Culture</p>
+            </div>
+        </div>
+
+        <!-- Section 1: Overview -->
+        <div class="page-break"></div>
+        <h2>01. Executive Overview</h2>
+        <div class="content-grid">
+            <div>
+                <p>Bangladesh, a land of immense beauty and legendary hospitality, stands today as a beacon of economic
+                    growth and cultural resilience in South Asia. Often referred to as "The Land of Rivers," the nation
+                    is defined by its deep connection to the water that feeds its fertile plains.</p>
+                <p>Emerging as an independent nation in 1971, Bangladesh has defied global expectations, transforming
+                    itself from a rural agricultural base into a global industrial powerhouse, specifically in the
+                    textile and digital sectors.</p>
+                <div class="highlight-box">
+                    <p><strong>Key Insight:</strong> The nation is home to 169 million people, making it the 8th most
+                        populous country in the world, yet it maintains one of the highest agricultural yields in the
+                        region.</p>
+                </div>
+            </div>
+            <div class="img-card">
+                <img src="assets/ASSETS2/flag.jpg" alt="Flag">
+                <div class="caption">The National Flag - Symbolizing the lush landscape and the blood of martyrs.</div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="val">1971</span>
+                <span class="lbl">Year of Independence</span>
+            </div>
+            <div class="stat-item">
+                <span class="val">169M+</span>
+                <span class="lbl">Current Population</span>
+            </div>
+            <div class="stat-item">
+                <span class="val">#2</span>
+                <span class="lbl">Global RMG Exporter</span>
+            </div>
+        </div>
+
+        <!-- Section 2: Geography -->
+        <div class="page-break"></div>
+        <h2>02. Geography & Climate</h2>
+        <p>Bangladesh is located at the crossroads of South and Southeast Asia. Its geography is dominated by the
+            Ganges-Brahmaputra Delta—the largest river delta on Earth. Roughly 80% of the country consists of fertile
+            plains, with the remaining 20% being hilly or forested.</p>
+
+        <div class="content-grid">
+            <div class="img-card">
+                <img src="assets/ASSETS2/map.jpg" alt="Map">
+                <div class="caption">Geographic layout showing the intricate river networks.</div>
+            </div>
+            <div>
+                <h3>Major Climatic Seasons</h3>
+                <ul class="feature-list">
+                    <li><strong>Summer (March-June):</strong> High humidity and temperatures reaching 40°C.</li>
+                    <li><strong>Monsoon (June-October):</strong> Delivering 80% of the annual rainfall; crucial for
+                        agriculture but bringing the risk of floods.</li>
+                    <li><strong>Winter (Nov-Feb):</strong> Mild and sunny, the peak season for tourism and festivals.
+                    </li>
+                </ul>
+                <p style="margin-top:1rem;">The country is also home to the world's longest natural beach at
+                    <strong>Cox’s Bazar</strong> and the <strong>Sundarbans</strong> mangrove forest.</p>
+            </div>
+        </div>
+
+        <!-- Section 3: Culture & People -->
+        <div class="page-break"></div>
+        <h2>03. People & Culture</h2>
+        <p>The soul of Bangladesh lies in its language, <strong>Bengali (Bangla)</strong>. It is a source of immense
+            pride, as the nation is the only one in history to have fought a war solely to preserve its linguistic
+            identity.</p>
+
+        <div class="content-grid">
+            <div>
+                <h3>Linguistic Heritage</h3>
+                <p>The Language Movement of 1952 laid the foundation for national independence. Today, the UNESCO
+                    International Mother Language Day honors this historic sacrifice.</p>
+                <h3>Religious Diversity</h3>
+                <p>While the majority are Muslims (approx. 90%), there are significant Hindu, Buddhist, and Christian
+                    communities. The national motto of social harmony is: <em>"Religious festivals belong to
+                        everyone."</em></p>
+            </div>
+            <div class="img-card">
+                <img src="assets/ASSETS2/religion.jpg" alt="Religion">
+                <div class="caption">The diverse religious landscape of Bangladesh.</div>
+            </div>
+        </div>
+
+        <h3>The Culinary Experience</h3>
+        <div class="content-grid">
+            <div class="img-card">
+                <img src="assets/ASSETS2/Biryani.jpg" alt="Food">
+            </div>
+            <div class="img-card">
+                <img src="assets/ASSETS2/Hilsa fish curry.jpg" alt="Fish">
+            </div>
+        </div>
+        <p>Food is central to celebrations. From the spicy <strong>Kacchi Biryani</strong> of Old Dhaka to the
+            traditional <strong>Hilsa Fish Curry</strong>, the cuisine is a blend of Mughlai influence and delta-fresh
+            ingredients.</p>
+
+        <!-- Section 4: History -->
+        <div class="page-break"></div>
+        <h2>04. History: The Struggle for Liberty</h2>
+        <p>The history of Bangladesh is a saga of triumph over oppression. After the 1947 Partition of India, the region
+            became East Pakistan, but linguistic, economic, and political disparities led to a movement for autonomy.
+        </p>
+
+        <div class="highlight-box" style="border-color: var(--primary);">
+            <p><strong>March 7, 1971:</strong> Sheikh Mujibur Rahman delivered a historic speech calling for freedom. On
+                March 26, the independence was declared, followed by a nine-month Liberation War that ended in victory
+                on December 16, 1971.</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="img-card">
+                <img src="assets/ASSETS2/Bangladesh Liberation War.jpg" alt="War">
+                <div class="caption">Historical depiction of the Liberation War movement.</div>
+            </div>
+            <div class="img-card">
+                <img src="assets/ASSETS2/Sheikh Mujibur Rahman.jpg" alt="Mujib">
+                <div class="caption">Bangabandhu Sheikh Mujibur Rahman - Father of the Nation.</div>
+            </div>
+        </div>
+
+        <!-- Section 5: Economy -->
+        <div class="page-break"></div>
+        <h2>05. Economy & Industrial Growth</h2>
+        <p>Bangladesh is categorized as a "Frontier Market" and is one of the "Next Eleven" global economies. Its growth
+            is powered by two main engines:</p>
+
+        <h3>1. Ready-Made Garments (RMG)</h3>
+        <p>The country is currently the world’s second-largest exporter of clothing, employing over 4 million workers
+            and contributing 80% of total export earnings.</p>
+
+        <h3>2. Agriculture & Natural Resources</h3>
+        <p>Known for its "Golden Fiber" (Jute), Bangladesh is a global leader in high-quality jute production. It also
+            possesses significant natural gas reserves that power its industries.</p>
+
+        <div class="img-card" style="margin-top: 2rem;">
+            <img src="assets/ASSETS2/naturalresources.jpg" alt="Economy">
+            <div class="caption">The diverse industrial and natural resource base.</div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="page-break"></div>
+        <h2>06. Conclusion</h2>
+        <p>This project has explored the multifaceted beauty of Bangladesh—from its deltaic plains to its vibrant
+            festivals and historic struggle for liberty. Bangladesh remains a country of the future, balancing its rich
+            heritage with a modern, digital-first vision for its citizens.</p>
+
+        <div style="text-align: center; margin-top: 5rem; border-top: 1px solid var(--border); padding-top: 2rem;">
+            <p style="font-size: 0.9rem; color: var(--text-muted);">&copy; 2026 Pamantasan ng Cabuyao / College of
+                Education</p>
+            <p style="font-size: 0.8rem; letter-spacing: 2px;">DISCOVER BANGLADESH: THE GOLDEN BENGAL</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

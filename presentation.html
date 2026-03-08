@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Bangladesh - Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --primary-light: #16936a;
+            --accent: #006a4e;
+            /* Bangladesh Green */
+            --accent-red: #f42a41;
+            /* Bangladesh Red */
+            --accent-glow: rgba(0, 106, 78, 0.4);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --slide-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-light);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Presentation Container */
+        .presentation-container {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Slide Styles */
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 85%;
+            background: var(--slide-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 4rem;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* Slide Content Grid */
+        .slide-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            height: 100%;
+        }
+
+        .slide-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        .slide-content ul {
+            list-style: none;
+        }
+
+        .slide-content li {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        .slide-content li i {
+            color: var(--accent);
+            margin-top: 0.4rem;
+        }
+
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+        }
+
+        .slide-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 10s ease-out;
+        }
+
+        .slide.active .slide-image img {
+            transform: scale(1.1);
+        }
+
+        /* Title Slide Special */
+        .slide-title {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-title::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.6);
+            z-index: 1;
+        }
+
+        .title-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .title-content h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+        }
+
+        .title-content p {
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Navigation Controls */
+        .controls {
+            padding: 1.5rem 4rem;
+            background: rgba(15, 23, 42, 0.8);
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .nav-btns {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-btn {
+            background: var(--primary-light);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px var(--accent-glow);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--accent);
+            transition: width 0.4s ease;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .slide-counter {
+            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Overlay Text Branding */
+        .branding {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 10;
+        }
+
+        .branding .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+        }
+
+        .branding .logo span {
+            color: var(--accent);
+        }
+
+        /* Animation for list items */
+        .slide.active li {
+            animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .slide.active li:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .slide.active li:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .slide.active li:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .slide.active li:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="branding">
+        <a href="index.html" class="logo">Bangla<span>desh</span></a>
+        <div class="slide-counter" id="slideCounter">Slide 1 of 12</div>
+    </div>
+
+    <div class="presentation-container">
+
+        <!-- Slide 1: Title -->
+        <div class="slide slide-title active" style="background-image: url('assets/ASSETS2/bangladesh.jpg');">
+            <div class="title-content">
+                <h1>Discover Bangladesh</h1>
+                <p>A Journey Through South Asia's Vibrant Heart</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Overview -->
+        <div class="slide">
+            <div class="slide-grid">
+                <div class="slide-content">
+                    <h2>At a Glance</h2>
+                    <ul>
+                        <li><i class="fa-solid fa-flag"></i> Independent since 1971 after a historic liberation
+                            struggle.</li>
+                        <li><i class="fa-solid fa-users"></i> Home to 169M+ people - the 8th most populous nation.</li>
+                        <li><i class="fa-solid fa-leaf"></i> Home to the Sundarbans, the world's largest mangrove
+                            forest.</li>
+                        <li><i class="fa-solid fa-chart-line"></i> One of the fastest-growing economies in the South
+                            Asian region.</li>
+                    </ul>
+                </div>
+                <div class="slide-image">
+                    <img src="assets/ASSETS2/flag.jpg" alt="Flag of Bangladesh">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Geography -->
+        <div class="slide">
+            <div class="slide-grid">
+                <div class="slide-content">
+                    <h2>The Land of Rivers</h2>
+                    <ul>
+                        <li><i class="fa-solid fa-location-dot"></i> Situated at the junction of India and Myanmar.</li>
+                        <li><i class="fa-solid fa-water"></i> Forms the world's largest river delta
+                            (Ganges-Brahmaputra).</li>
+                        <li><i class="fa-solid fa-cloud-sun-rain"></i> Tropical Monsoon climate with three major
+                            seasons.</li>
+                        <li><i class="fa-solid fa-mountain-sun"></i> Rich fertile plains perfect for agriculture and
+                            jute.</li>
+                    </ul>
+                </div>
+                <div class="slide-image">
+                    <img src="assets/ASSETS2/map.jpg" alt="Map">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Major Cities -->
+        <div class="slide">
+            <div class="slide-grid">
+                <div class="slide-content">
+                    <h2>Urban Centers</h2>
+                    <ul>
+                        <li><i class="fa-solid fa-city"></i> <strong>Dhaka:</strong> The mega-capital and historical
+                            trade hub.</li>
+                        <li><i class="fa-solid fa-ship"></i> <strong>Chittagong:</strong> Maritime gateway and
+                            commercial heart.</li>
+                        <li><i class="fa-solid fa-industry"></i> <strong>Khulna:</strong> Industrial city near the
+                            Sundarbans jungle.</li>
+                        <li><i class="fa-solid fa-building"></i> Modern infrastructure bridging heritage with the
+                            future.</li>
+                    </ul>
+                </div>
+                <div class="slide-image">
+                    <img src="assets/ASSETS2/dhaka.jpg" alt="Dhaka">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Culture & Language -->
+        <div class="slide">
+            <div class="slide-grid">
+                <div class="slide-content">
+                    <h2>The Soul: Language</h2>
+                    <ul>
+                        <li><i class="fa-solid fa-language"></i> <strong>Bengali (Bangla):</strong> The 7th most spoken
+                            language globally.</li>
+                        <li><i class="fa-solid fa-hand-holding-heart"></i> The only nation founded on linguistic
+                            identity.</li>
+                        <li><i class="fa-solid fa-mosque"></i> Rich multi-religious heritage: Islam, Hinduism, Buddhism,
+                            and more.</li>
+                        <li><i class="fa-solid fa-people-group"></i> Known for hospitality and deep community bonds.
+                        </li>
+                    </ul>
+                </div>
+                <div class="slide-image">
+                    <img src="assets/ASSETS2/religion.jpg" alt="Culture">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Festivals -->
+        <div class="slide">
+            <div class="slide-grid">
+                <div class="slide-content">
+                    <h2>Vibrant Celebrations</h2>
+                    <ul>
+                        <li><i class="fa-solid fa-masks-theater"></i> <strong>Pohela Boishakh:</strong> Colorful Bengali
+                            New Year.</li>
+                        <li><i class="fa-solid fa-moon"></i> <strong>Eid-ul-Fitr:</strong> The major Islamic
+                            celebration.</li>
+                        <li><i class="fa-solid fa-om"></i> <strong>Durga Puja:</strong> The grandest Hindu festival in
+                            the region.</li>
+                        <li><i class="fa-solid fa-music"></i> Traditional music (Baul) and classical arts are daily
+                            life.</li>
+                    </ul>
+                </div>
+                <div class="slide-image">
+                    <img src="assets/ASSETS2/Pohela.jpg" alt="Festivals">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Cuisine -->
+        <div class="slide">
+            <div class="slide-grid">
+                <div class="slide-content">
+                    <h2>Flavors of Bengal</h2>
+                    <ul>
+                        <li><i class="fa-solid fa-fish"></i> <strong>Staple:</strong> "Maach-e-Bhaat" (Fish and Rice).
+                        </li>
+                        <li><i class="fa-solid fa-bowl-rice"></i> Famous for Biryani and Spicy Hilsa Fish Curry.</li>
+                        <li><i class="fa-solid fa-candy-cane"></i> Peerless dairy-based sweets like Rasmalai.</li>
+                        <li><i class="fa-solid fa-mug-hot"></i> Tea culture: Bangladesh is a major global tea exporter.
+                        </li>
+                    </ul>
+                </div>
+                <div class="slide-image">
+                    <img src="assets/ASSETS2/Biryani.jpg" alt="Cuisine">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: History -->
+        <div class="slide">
+            <div class="slide-grid">
+                <div class="slide-content">
+                    <h2>History & Liberation</h2>
+                    <ul>
+                        <li><i class="fa-solid fa-clock-rotate-left"></i> <strong>1947:</strong> Emerged from the
+                            Partition of India.</li>
+                        <li><i class="fa-solid fa-person-walking-arrow-right"></i> <strong>1952:</strong> The historic
+                            Language Movement.</li>
+                        <li><i class="fa-solid fa-gun"></i> <strong>1971:</strong> Independence after the Liberation
+                            War.</li>
+                        <li><i class="fa-solid fa-monument"></i> A history defined by resilience and cultural pride.
+                        </li>
+                    </ul>
+                </div>
+                <div class="slide-image">
+                    <img src="assets/ASSETS2/Bangladesh Liberation War.jpg" alt="History">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Leadership -->
+        <div class="slide">
+            <div class="slide-grid">
+                <div class="slide-content">
+                    <h2>Governance</h2>
+                    <ul>
+                        <li><i class="fa-solid fa-building-columns"></i> <strong>System:</strong> Unitary Parliamentary
+                            Republic.</li>
+                        <li><i class="fa-solid fa-person-rays"></i> <strong>Sheikh Mujibur Rahman:</strong> The Father
+                            of the Nation.</li>
+                        <li><i class="fa-solid fa-scale-balanced"></i> Committed to secularism and democratic
+                            principles.</li>
+                        <li><i class="fa-solid fa-globe"></i> A key player in UN Peacekeeping operations globally.</li>
+                    </ul>
+                </div>
+                <div class="slide-image">
+                    <img src="assets/ASSETS2/Sheikh Mujibur Rahman.jpg" alt="Leadership">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Economy -->
+        <div class="slide">
+            <div class="slide-grid">
+                <div class="slide-content">
+                    <h2>Growth & Economy</h2>
+                    <ul>
+                        <li><i class="fa-solid fa-shirt"></i> <strong>Garments:</strong> 2nd largest RMG exporter in the
+                            world.</li>
+                        <li><i class="fa-solid fa-wheat-awn"></i> Agricultural powerhouse in Rice and Jute production.
+                        </li>
+                        <li><i class="fa-solid fa-microchip"></i> Rapidly expanding IT and Digital Services sector.</li>
+                        <li><i class="fa-solid fa-money-bill-trend-up"></i> Sustained 6%+ GDP growth over the last
+                            decade.</li>
+                    </ul>
+                </div>
+                <div class="slide-image">
+                    <img src="assets/ASSETS2/naturalresources.jpg" alt="Economy">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Tourism -->
+        <div class="slide">
+            <div class="slide-grid">
+                <div class="slide-content">
+                    <h2>Tourist Paradise</h2>
+                    <ul>
+                        <li><i class="fa-solid fa-umbrella-beach"></i> <strong>Cox's Bazar:</strong> Longest natural
+                            beach (120km).</li>
+                        <li><i class="fa-solid fa-paw"></i> <strong>Sundarbans:</strong> UNESCO site and tiger habitat.
+                        </li>
+                        <li><i class="fa-solid fa-fort-awesome"></i> <strong>History:</strong> Mahasthangarh and Lalbagh
+                            Fort.</li>
+                        <li><i class="fa-solid fa-mountain"></i> Green tea gardens in the hills of Sylhet.</li>
+                    </ul>
+                </div>
+                <div class="slide-image">
+                    <img src="assets/ASSETS2/Winter-Season-in-Bangladesh.jpg" alt="Tourism">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Conclusion -->
+        <div class="slide slide-title" style="background-image: url('assets/ASSETS2/bangladesh.jpg');">
+            <div class="title-content">
+                <h1>Thank You!</h1>
+                <p>Bangladesh: A Beacon of Growth and Hospitality</p>
+                <div style="margin-top: 2rem; color: #fff; opacity: 0.8;">
+                    Visit us at <span style="color: var(--accent);">discoverbangladesh.com</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <div class="slide-counter" id="slideCounterBottom">Slide 1 of 12</div>
+        <div class="nav-btns">
+            <button class="nav-btn" id="prevBtn" disabled>
+                <i class="fa-solid fa-chevron-left"></i> Previous
+            </button>
+            <button class="nav-btn" id="nextBtn">
+                Next <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <button class="nav-btn" id="exitBtn"
+                style="background: rgba(239, 68, 68, 0.2); color: #ef4444; border-color: rgba(239, 68, 68, 0.2);">
+                <i class="fa-solid fa-xmark"></i> Exit
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const exitBtn = document.getElementById('exitBtn');
+        const counterTop = document.getElementById('slideCounter');
+        const counterBottom = document.getElementById('slideCounterBottom');
+        const progressBar = document.getElementById('progressBar');
+
+        let currentSlide = 0;
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+
+            // Update buttons
+            prevBtn.disabled = currentSlide === 0;
+            if (currentSlide === slides.length - 1) {
+                nextBtn.innerHTML = 'Restart <i class="fa-solid fa-rotate-right"></i>';
+            } else {
+                nextBtn.innerHTML = 'Next <i class="fa-solid fa-chevron-right"></i>';
+            }
+
+            // Update counters
+            const currentText = `Slide ${currentSlide + 1} of ${slides.length}`;
+            counterTop.innerText = currentText;
+            counterBottom.innerText = currentText;
+
+            // Update Progress
+            const progress = ((currentSlide + 1) / slides.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+            } else {
+                currentSlide = 0;
+            }
+            updateSlide();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        });
+
+        exitBtn.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextBtn.click();
+            } else if (e.key === 'ArrowLeft') {
+                prevBtn.click();
+            } else if (e.key === 'Escape') {
+                exitBtn.click();
+            }
+        });
+
+        // Initialize display
+        updateSlide();
+    </script>
+</body>
+
+</html>
